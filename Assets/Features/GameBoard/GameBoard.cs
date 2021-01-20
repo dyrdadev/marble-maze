@@ -4,7 +4,7 @@ using System.Collections;
 
 // Script that handles the rotation input into the marble game
 
-public class RotatorScript : MonoBehaviour {
+public class GameBoard : MonoBehaviour {
 	
 	// maximum rotation angle for accelerometer input
 	public float maxAngle = 60.0f;
@@ -13,12 +13,12 @@ public class RotatorScript : MonoBehaviour {
 	float xAngle, yAngle;
 
 
-    VirtualAccelerometerInput vai;
+    AccelerometerInput vai;
 
     // Use this for initialization
     void Start () {
 
-        vai = GetComponent< VirtualAccelerometerInput > ();
+        vai = GetComponent< AccelerometerInput > ();
 		// initialize the plane as flat
 		xAngle = 0;
 		yAngle = 0;

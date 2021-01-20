@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VirtualAccelerometerInput : MonoBehaviour {
-
-    
-    private Vector3 direction;
-
+public class AccelerometerInput : MonoBehaviour {
     public Vector3 GetDirection()
     {
         return direction;
     }
+    private Vector3 direction;
 
     // Low Pass Filter Attributes
     private static float AccelerometerUpdateInterval  = 1.0f / 60.0f;
@@ -26,8 +23,7 @@ public class VirtualAccelerometerInput : MonoBehaviour {
         lowPassValue = Input.acceleration;
     }
 
-    private Vector3 LowPassFilterAccelerometer()  {
-        
+    void Update () {
         float period = 0.0f;
         Vector3 acc = Vector3.zero;
 
@@ -39,16 +35,11 @@ public class VirtualAccelerometerInput : MonoBehaviour {
         if (period > 0){
             acc *= 1.0f / period;
         }
-        
+            
+        // Apply lowpass filter.
         lowPassValue = Vector3.Lerp(lowPassValue, acc, LowPassFilterFactor);
-
-        return lowPassValue;
-    }
-
-// Update is called once per frame
-void Update () {
-
-        var accelerometerData = LowPassFilterAccelerometer(); // Low pass filter 
+        
+        var accelerometerData = lowPassValue;
 
         // clamp acceleration vector to the unit sphere
         if (accelerometerData.sqrMagnitude > 1)

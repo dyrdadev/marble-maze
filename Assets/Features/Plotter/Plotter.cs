@@ -2,86 +2,69 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-// Script to plot three graphs
-
 public class Plotter : MonoBehaviour
 {
-
-
     [Header("References")]
-    [Tooltip("prefab containing a line renderer")]
-    // Keep a reference to the empty object prefab that 
-    // conatins a line renderer
+    [Tooltip("Prefab containing a line renderer")]
     public GameObject lineRenderer;
 
-    [Tooltip("shader used for rendering the plotter lines\n" +
-        "we use particles/additive")]
+    [Tooltip("Shader used for rendering the plotter lines\n" +
+             "we use particles/additive")]
     public Shader shader;
-
-    // we instanciate these three objects
-    GameObject xRendererObject;
-    GameObject yRendererObject;
-    GameObject zRendererObject;
-
-    // And get the reference to the three respective line renderers
-    LineRenderer xRenderer;
-    LineRenderer yRenderer;
-    LineRenderer zRenderer;
-
-    // Setup a few colors
-    Color xColor = Color.red;
-    Color yColor = Color.green;
-    Color zColor = Color.blue;
-    Color axisColor = Color.white;
-
-    // All points will be on the same zPosition (the near clipping plane)
-    float zPosition;
-
-    // Compute the distance between two plots and the y coordinates for the center
-    // of each one				
-    float ySection;
-    float xySection;
-    float yySection;
-    float zySection;
-
-    // for the screen width		
-    float xMinPos;
-    float xMaxPos;
+    
+    private GameObject xRendererObject;
+    private GameObject yRendererObject;
+    private GameObject zRendererObject;
+    
+    private LineRenderer xRenderer;
+    private LineRenderer yRenderer;
+    private LineRenderer zRenderer;
+    
+    private Color xColor = Color.red;
+    private Color yColor = Color.green;
+    private Color zColor = Color.blue;
+    private Color axisColor = Color.white;
+    
+    private float zPosition;
+    
+    private float ySection;
+    private float xySection;
+    private float yySection;
+    private float zySection;
+    
+    private float xMinPos;
+    private float xMaxPos;
+    
+    private List<float> xValues;
+    private List<float> yValues;
+    private List<float> zValues;
 
 
-    // This stores the list of the points to be plotted
-    List<float> xValues;
-    List<float> yValues;
-    List<float> zValues;
-
-
-    // Use this for initialization
-    void Start()
+    private void Start()
     {
-
         // Setup
-        // We basically instanciate three new objects and get the renderes therein
-        xRendererObject = (GameObject)Instantiate(lineRenderer);
-        yRendererObject = (GameObject)Instantiate(lineRenderer);
-        zRendererObject = (GameObject)Instantiate(lineRenderer);
+        // We basically instantiate three new objects and get the renderes therein
+        xRendererObject = (GameObject) Instantiate(lineRenderer);
+        yRendererObject = (GameObject) Instantiate(lineRenderer);
+        zRendererObject = (GameObject) Instantiate(lineRenderer);
 
-        xRenderer = (LineRenderer)xRendererObject.GetComponent<LineRenderer>();
-        yRenderer = (LineRenderer)yRendererObject.GetComponent<LineRenderer>();
-        zRenderer = (LineRenderer)zRendererObject.GetComponent<LineRenderer>();
+        xRenderer = (LineRenderer) xRendererObject.GetComponent<LineRenderer>();
+        yRenderer = (LineRenderer) yRendererObject.GetComponent<LineRenderer>();
+        zRenderer = (LineRenderer) zRendererObject.GetComponent<LineRenderer>();
 
 
         // We do the same a second time for the zero-axis lines
         // but these instances only display static lines
         // thus they can be local
-        GameObject xAxisRendererObject = (GameObject)Instantiate(lineRenderer);
-        GameObject yAxisRendererObject = (GameObject)Instantiate(lineRenderer);
-        GameObject zAxisRendererObject = (GameObject)Instantiate(lineRenderer);
+        var xAxisRendererObject = (GameObject) Instantiate(lineRenderer);
+        var yAxisRendererObject = (GameObject) Instantiate(lineRenderer);
+        var zAxisRendererObject = (GameObject) Instantiate(lineRenderer);
 
-        LineRenderer xAxisRenderer = (LineRenderer)xAxisRendererObject.GetComponent<LineRenderer>();
-        LineRenderer yAxisRenderer = (LineRenderer)yAxisRendererObject.GetComponent<LineRenderer>();
-        LineRenderer zAxisRenderer = (LineRenderer)zAxisRendererObject.GetComponent<LineRenderer>();
+        var xAxisRenderer = (LineRenderer) xAxisRendererObject.GetComponent<LineRenderer>();
+        var yAxisRenderer = (LineRenderer) yAxisRendererObject.GetComponent<LineRenderer>();
+        var zAxisRenderer = (LineRenderer) zAxisRendererObject.GetComponent<LineRenderer>();
 
-        // Setup materials (colors), lijne widths and set the vertex counts to 1000
+        // Setup materials (colors), line widths and set the vertex counts to 1000
         // Each line will be made up of 1000 data points
         xRenderer.material = new Material(shader);
         xRenderer.startColor = xColor;
@@ -171,30 +154,26 @@ public class Plotter : MonoBehaviour
         xValues = new List<float>();
         yValues = new List<float>();
         zValues = new List<float>();
-        for (int i = 0; i < 1000; i++)
+        for (var i = 0; i < 1000; i++)
         {
             xValues.Add(Mathf.Sin(i / 1000.0f * Mathf.PI * 4.0f));
             yValues.Add(Mathf.Sin(i / 1000.0f * Mathf.PI * 4.0f));
             zValues.Add(Mathf.Sin(i / 1000.0f * Mathf.PI * 4.0f));
         }
-
-
     }
 
-    void OnGUI()
+    private void OnGUI()
     {
         // draw a new label and show the received serial data
         GUI.Label(new Rect(10, 10, 220, 20), "Data: [values go here]");
     }
 
-    // Update is called once per physics engine time tick
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         Vector3 position;
 
         // get the accelerometer values
-
-        var tempData = this.GetComponent<VirtualAccelerometerInput>().GetDirection();
+        var tempData = GetComponent<AccelerometerInput>().GetDirection();
 
 
         // drop the left most data point
@@ -210,27 +189,27 @@ public class Plotter : MonoBehaviour
         zValues.Add(tempData.z);
 
         // update all the points for the three line renderes
-        for (int i = 0; i < 1000; i++)
+        for (var i = 0; i < 1000; i++)
         {
             // we scale the sensor values to fit comfortably between two sections
-            float yPos = xySection + ySection * 0.707f * 0.5f * xValues[i];
-            float xPos = xMinPos + ((xMaxPos - xMinPos) / 1000.0f * i);
+            var yPos = xySection + ySection * 0.707f * 0.5f * xValues[i];
+            var xPos = xMinPos + (xMaxPos - xMinPos) / 1000.0f * i;
             position = new Vector3(xPos, yPos, zPosition);
             xRenderer.SetPosition(i, Camera.main.ScreenToWorldPoint(position));
         }
 
-        for (int i = 0; i < 1000; i++)
+        for (var i = 0; i < 1000; i++)
         {
-            float yPos = yySection + ySection * 0.707f * 0.5f * yValues[i];
-            float xPos = xMinPos + ((xMaxPos - xMinPos) / 1000.0f * i);
+            var yPos = yySection + ySection * 0.707f * 0.5f * yValues[i];
+            var xPos = xMinPos + (xMaxPos - xMinPos) / 1000.0f * i;
             position = new Vector3(xPos, yPos, zPosition);
             yRenderer.SetPosition(i, Camera.main.ScreenToWorldPoint(position));
         }
 
-        for (int i = 0; i < 1000; i++)
+        for (var i = 0; i < 1000; i++)
         {
-            float yPos = zySection + ySection * 0.707f * 0.5f * zValues[i];
-            float xPos = xMinPos + ((xMaxPos - xMinPos) / 1000.0f * i);
+            var yPos = zySection + ySection * 0.707f * 0.5f * zValues[i];
+            var xPos = xMinPos + (xMaxPos - xMinPos) / 1000.0f * i;
             position = new Vector3(xPos, yPos, zPosition);
             zRenderer.SetPosition(i, Camera.main.ScreenToWorldPoint(position));
         }
