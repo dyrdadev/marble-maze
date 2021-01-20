@@ -51,8 +51,7 @@ public class Plotter : MonoBehaviour
         xRenderer = (LineRenderer) xRendererObject.GetComponent<LineRenderer>();
         yRenderer = (LineRenderer) yRendererObject.GetComponent<LineRenderer>();
         zRenderer = (LineRenderer) zRendererObject.GetComponent<LineRenderer>();
-
-
+        
         // We do the same a second time for the zero-axis lines
         // but these instances only display static lines
         // thus they can be local
@@ -86,8 +85,7 @@ public class Plotter : MonoBehaviour
         zRenderer.startWidth = 0.002f;
         zRenderer.endWidth = 0.002f;
         zRenderer.positionCount = 1000;
-
-
+        
         // Do the same for the zero axis renders, but we only use 2 points
         // left and right center point
         xAxisRenderer.material = new Material(shader);
@@ -110,8 +108,7 @@ public class Plotter : MonoBehaviour
         zAxisRenderer.startWidth = 0.0005f;
         zAxisRenderer.endWidth = 0.0005f;
         zAxisRenderer.positionCount = 2;
-
-
+        
         // we get the zPosition as the near clipping plane
         zPosition = Camera.main.nearClipPlane;
 
@@ -126,7 +123,6 @@ public class Plotter : MonoBehaviour
         xMaxPos = Screen.width;
 
         Vector3 position;
-
 
         // compute the 3d world coordinates for the axis lines
         // ScreenToWorldPoint does the transformation from screen pixel coordinates to
@@ -174,8 +170,7 @@ public class Plotter : MonoBehaviour
 
         // get the accelerometer values
         var tempData = GetComponent<AccelerometerInput>().GetDirection();
-
-
+        
         // drop the left most data point
         // and add the new sensor value at the right edge
         // note that we normalize the values between -1 and 1
