@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
@@ -11,7 +12,7 @@ public class GameManager : MonoBehaviour {
 		set
 		{
 			score = value;
-			scoreUI.text = "" + score;
+			SetScoreLabel("" + score);
 		}
 	}
 	private int score = 0;
@@ -23,8 +24,24 @@ public class GameManager : MonoBehaviour {
 		set
 		{
 			lostBalls = value;
-			ballsUI.text = "" + lostBalls;
+			SetLostBallLabel(""+lostBalls);
 		}
 	}
 	private int lostBalls = 0;
+
+	void SetScoreLabel(string text)
+	{
+		scoreUI.text = text;
+	}
+	
+	void SetLostBallLabel(string text)
+	{
+		ballsUI.text = text;
+	}
+
+	private void Start()
+	{
+		Score = 0;
+		LostBalls = 0;
+	}
 }
