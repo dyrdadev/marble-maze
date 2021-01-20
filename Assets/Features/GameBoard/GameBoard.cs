@@ -13,26 +13,19 @@ public class GameBoard : MonoBehaviour {
 	float xAngle, yAngle;
 
 
-    AccelerometerInput vai;
+    AccelerometerInput accelerometerInput;
 
     // Use this for initialization
     void Start () {
 
-        vai = GetComponent< AccelerometerInput > ();
-		// initialize the plane as flat
+        accelerometerInput = GetComponent<AccelerometerInput>();
+        
 		xAngle = 0;
 		yAngle = 0;
 	}
 	
-	// Update is called once per physics tick
+	// FixedUpdate is called once per physics tick
 	void FixedUpdate () {
-
-        var accelerometerData = vai.GetDirection();
-
-        xAngle = accelerometerData.y * maxAngle;
-        yAngle = - accelerometerData.x * maxAngle;
-        Quaternion q = Quaternion.Euler(xAngle, 0, yAngle);
-        GetComponent<Rigidbody>().MoveRotation(q);
-
-    }
+		// ...
+	}
 }
