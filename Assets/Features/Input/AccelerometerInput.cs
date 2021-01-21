@@ -8,18 +8,15 @@ public class AccelerometerInput : MonoBehaviour {
         return direction;
     }
     private Vector3 direction;
-
-    // Low Pass Filter Attributes
+    
     private static float AccelerometerUpdateInterval  = 1.0f / 60.0f;
     private static float LowPassKernelWidthInSeconds = 0.5f;
-
-    private float LowPassFilterFactor = AccelerometerUpdateInterval / LowPassKernelWidthInSeconds; // tweakable
+    private float LowPassFilterFactor = AccelerometerUpdateInterval / LowPassKernelWidthInSeconds; 
 
     private Vector3 lowPassValue = Vector3.zero;
 
     public void Start()
     {
-        // Initialize the Low Pass Filter value
         lowPassValue = Input.acceleration;
     }
 
