@@ -2,8 +2,6 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-// Based on the plotter of the unknown author
-
 public class Plotter : MonoBehaviour
 {
     [Header("References")]
