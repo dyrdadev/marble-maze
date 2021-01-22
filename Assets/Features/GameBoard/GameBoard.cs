@@ -8,9 +8,9 @@ public class GameBoard : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-	    accelerometerInput = GetComponent<AccelerometerInput>();
-	    xAngle = 0;
-		yAngle = 0;
+	    accelerometerInput = GetComponent<AccelerometerInput>(); 
+	    xAngle = 0; 
+	    yAngle = 0;
 	}
 	
 	// FixedUpdate is called once per physics tick
