@@ -7,7 +7,7 @@
 <p align=center>
     <br>
     <br>
-    <a href="https://github.com/dyrdaio/marble-maze">
+    <a href="https://github.com/dyrdadev/marble-maze">
         <img src="./Media/gameplay-with-device.png" alt="A device mockup of the marble maze game."/>
     </a>
     <br>
