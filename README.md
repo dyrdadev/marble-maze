@@ -1,9 +1,20 @@
 <p align=center>
     <br>
     <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <a href="https://github.com/dyrdadev/marble-maze">
         <img src="./Media/marble-maze-icon-preview.png" alt="An icon of the marble maze game." width="162px"/>
     </a>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <br>
     <br>
 </p>
