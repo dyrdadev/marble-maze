@@ -1,23 +1,31 @@
-<p align=center>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <a href="https://github.com/dyrdadev/marble-maze">
-        <img src="./Media/marble-maze-icon-preview.png" alt="An icon of the marble maze game." width="162px"/>
-    </a>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-</p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div align=center>
+<a href="https://github.com/dyrdadev/marble-maze">
+    <img src="./Media/icon.png" alt="An icon of the marble maze game." width="148px"/>
+</a>
+</div>
+<h6 align=center>
+    Marble Maze
+</h6>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 
 # Marble Maze
 
