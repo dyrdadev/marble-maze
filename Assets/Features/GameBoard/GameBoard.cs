@@ -6,10 +6,12 @@ public class GameBoard : MonoBehaviour
     public float maxAngle = 60.0f;
     private float xAngle, yAngle;
     private AccelerometerInput vai;
+    private Rigidbody _rigidbody;
 
     private void Start()
     {
         vai = GetComponent<AccelerometerInput>();
+        _rigidbody = GetComponent<Rigidbody>();
         xAngle = 0;
         yAngle = 0;
     }
@@ -20,6 +22,6 @@ public class GameBoard : MonoBehaviour
         xAngle = accelerometerData.y * maxAngle;
         yAngle = -accelerometerData.x * maxAngle;
         var q = Quaternion.Euler(xAngle, 0, yAngle);
-        GetComponent<Rigidbody>().MoveRotation(q);
+        _rigidbody.MoveRotation(q);
     }
 }
