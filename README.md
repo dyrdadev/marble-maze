@@ -42,7 +42,7 @@ Orient your smartphone horizontally so that your screen is facing upwards toward
 
 ## License & Third Party Content
 
-This project is licensed under a MIT license. See the [LICENSE](/LICENSE) file for details.
+This project is licensed under an MIT license. See the [LICENSE](/LICENSE) file for details.
 
 Many assets of this project were created by other people. Check out the [Third Party Content](/ThirdPartyContent.md) file for details.
 
