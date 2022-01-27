@@ -40,16 +40,16 @@
 
 Orient your smartphone horizontally so that your screen is facing upwards towards the sky. Tilt your smartphone to navigate the ball through the maze. The goal of the game is to reach the green target while avoiding the red areas.
 
-## License & Third Party Content
+## License & Third-Party Content
 
 This project is licensed under an MIT license. See the [LICENSE](/LICENSE) file for details.
 
-Many assets of this project were created by other people. Check out the [Third Party Content](/ThirdPartyContent.md) file for details.
+Many assets of this project were created by other people. Check out the [Third-Party Content](/ThirdPartyContent.md) file for details.
 
 ## Contribute
 
 This project was created by [Daniel Dyrda](https://dyrda.page).
 
-> Daniel: _If you want to support me and my projects, you can follow me on [github (DyrdaDev)](https://github.com/DyrdaDev) and [twitter (@daniel_dyrda)](https://twitter.com/daniel_dyrda). Just come by and say hello, I would love to hear how you are using the project._
+> Daniel: _If you want to support me and my projects, you can follow me on [GitHub (DyrdaDev)](https://github.com/DyrdaDev) and [Twitter (@daniel_dyrda)](https://twitter.com/daniel_dyrda). Just come by and say hello, I would love to hear how you are using the project._
 
-If you want to contribute to this project, you are welcome to do so. Just write me and we will find a way to collaborate.
+If you want to contribute to this project, you are welcome to do so. Just write to me and we will find a way to collaborate.
